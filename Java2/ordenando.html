@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordenando com JavaScript</title>
+  <!-- Incluindo o CSS do Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center">Ordenando valores</h1>
+
+        <!-- Campo de entrada numérico -->
+        <input type="number" id="valor" class="form-control">
+
+        <!-- Botão Adicionar -->
+        <button onclick="add()" class="btn btn-primary mt-2">Adicionar</button>
+
+        <!-- Campo de seleção -->
+        <select id="algoritmo" class="form-control mt-2">
+          <option value="bubble" selected>Bubble Sort</option>
+          <option value="selection">Selection Sort</option>
+          <option value="quick">Quick Sort</option>
+        </select>
+
+        <!-- Botões Ordenar e Misturar -->
+        <button onclick="ordenar()" class="btn btn-success mt-2">Ordenar</button>
+        <button onclick="misturar()" class="btn btn-warning mt-2">Misturar</button>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="border-right" style="height: 100%"></div>
+        </div>
+      </div>
+      <div class="col">
+        <h1 class="text-center">Ordenando valores</h1>
+
+        <!-- Campo de entrada numérico (duplicado) -->
+        <input type="number" id="valor2" class="form-control">
+
+        <!-- Botão Adicionar (duplicado) -->
+        <button onclick="add2()" class="btn btn-primary mt-2">Adicionar</button>
+
+        <!-- Campo de seleção (duplicado) -->
+        <select id="algoritmo2" class="form-control mt-2">
+          <option value="bubble" selected>Bubble Sort</option>
+          <option value="selection">Selection Sort</option>
+          <option value="quick">Quick Sort</option>
+        </select>
+
+        <!-- Botões Ordenar e Misturar (duplicados) -->
+        <button onclick="ordenar2()" class="btn btn-success mt-2">Ordenar</button>
+        <button onclick="misturar2()" class="btn btn-warning mt-2">Misturar</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <!-- Lista de valores -->
+        <ul id="valores" class="list-group mt-4">
+        </ul>
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+        <!-- Lista de valores duplicada -->
+        <ul id="valores2" class="list-group mt-4">
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <script src="ordenando.js"></script>
+</body>
+</html>

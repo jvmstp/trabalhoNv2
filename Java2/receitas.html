@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .container {
+            background-color: #ffffff; /* Fundo branco */
+            padding: 20px;
+        }
+        #pnlCatalogo {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background-color: #ffc107; /* Fundo amarelo */
+            padding: 20px;
+            border-radius: 10px; /* Borda arredondada */
+        }
+        .card {
+            width: calc(33.33% - 20px); /* 33.33% do espaço com 20px de espaçamento entre as receitas */
+            margin-bottom: 20px;
+        }
+        #tituloCatalogo {
+            position: relative;
+            text-align: center;
+            right: 350px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body onload="preencheCatalogo()">
+    <div class="container">
+        <h1 id="tituloCatalogo">Catálogo de Receitas</h1> <!-- Título dentro do fundo branco -->
+        <div id="pnlCatalogo">
+            <!-- Aqui serão inseridas as receitas -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-6s5/FFso3CzveuSa8LDK8V9k4Qw7lUvGKxO0er3rHnaxq/pzvGnZN7lVLW0IkxJh" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk+1SrwE9pFcRhoA4dh+6P0F0HS2zoNW+Ub" crossorigin="anonymous"></script>
+
+    <script>
+        // Dados de receitas em formato JSON
+        const receitas = [
+            {
+                "titulo": "Arroz de Couve-Flor",
+                "imagem": "estilo/images.jpg",
+                "preparo": "1. Preaqueça o forno a 180°C. 2. Misture todos os ingredientes em uma tigela. 3. Despeje a massa em uma forma untada. 4. Asse por 30 minutos.",
+                "ingredientes": ["2 xícaras de farinha de trigo", "1 xícara de açúcar", "1 xícara de cacau em pó", "1 xícara de leite", "1/2 xícara de óleo", "2 ovos"]
+            },
+            {
+                "titulo": "Bolo de Café",
+                "imagem": "estilo/bolo-de-cafe.webp",
+                "preparo": "1. Lave e corte todas as frutas em cubos. 2. Misture bem em uma tigela grande. 3. Sirva gelado.",
+                "ingredientes": ["1 maçã", "1 banana", "1 laranja", "1 pera", "1 xícara de morangos"]
+            },
+            {
+                "titulo": "Coxinha de Brigadeiro",
+                "imagem": "estilo/bcab5be00f2765a0d799cefcdeef33a1.webp",
+                "preparo": "1. Refogue os legumes com azeite e cebola. 2. Adicione água e cozinhe até ficarem macios. 3. Tempere a gosto.",
+                "ingredientes": ["2 cenouras", "2 batatas", "1 abobrinha", "1 cebola", "1 dente de alho", "1 litro de água"]
+            }
+            // Adicione mais receitas conforme necessário
+        ];
+
+        // Função para obter a lista de ingredientes em HTML
+        function getListaIngredientes(receita) {
+            const listaHTML = "<ul>" +
+                                receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).reduce((a, b) => a + b, "") +
+                             "</ul>";
+            return listaHTML;
+        }
+
+        // Função para gerar o card de uma receita
+        function getCard(receita) {
+            return `
+                <div class="card mb-4">
+                    <img src="${receita.imagem}" class="card-img-top" alt="${receita.titulo}">
+                    <div class="card-body">
+                        <h5 class="card-title">${receita.titulo}</h5>
+                        <div class="card-text">
+                            ${getListaIngredientes(receita)}
+                            <hr>
+                            <p>${receita.preparo}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para preencher o catálogo de receitas
+        function preencheCatalogo() {
+            const pnlCatalogo = document.getElementById('pnlCatalogo');
+            const cardsHTML = receitas.map(receita => getCard(receita)).reduce((a, b) => a + b, "");
+            pnlCatalogo.innerHTML = cardsHTML;
+        }
+    </script>
+</body>
+</html>
